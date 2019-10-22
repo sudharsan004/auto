@@ -1,6 +1,10 @@
 from selenium import webdriver
+import sys,os
 import time,xlrd,xlwt
-b=webdriver.Chrome(r"chromedriver")
+chromedriver = "chromedriver"
+os.environ["webdriver.chrome.driver"] = chromedriver
+b = webdriver.Chrome(chromedriver)
+#b=webdriver.Chrome(r"chromedriver")
 b.maximize_window()
 
 b.get("https://evp.ecinet.in/Account/LoginOfficial?loginType=ECI")
@@ -18,13 +22,12 @@ for i in range(sheet.nrows):
 for element in l:
     b.find_element_by_id("epicno").send_keys(element)
     b.find_element_by_id("btnGet").click()
-    #b.find_element_by_id("detail_verify").click()
-    #time.sleep(0.1)
-    #b.find_element_by_id("doc-no").send_keys('1')
-    #b.find_element_by_id("upload").send_keys('1.jpg')
-    #b.find_element_by_id("submit").click()
+    b.find_element_by_css_selector("//*[@id='radio_v_div']/div/div[1]/label").click() 
+    b.find_element_by_id("DocumentNo").send_keys('1')
+    b.find_element_by_id("verification_proof_image").send_keys('1.jpg')
+    b.find_element_by_id("SubmitForm").click()
     b.find_element_by_id("btnRefresh").click()
-    time.sleep(5)
+    time.sleep(0.5)
     
     
 
