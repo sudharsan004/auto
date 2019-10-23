@@ -22,7 +22,8 @@ for i in range(sheet.nrows):
 for element in l:
     b.find_element_by_id("epicno").send_keys(element)
     b.find_element_by_id("btnGet").click()
-    b.find_element_by_css_selector("//*[@id='radio_v_div']/div/div[1]/label").click() 
+    time.sleep(0.2)
+    b.find_element_by_id("detail_verify").click() 
     b.find_element_by_id("DocumentNo").send_keys('1')
     b.find_element_by_id("verification_proof_image").send_keys('1.jpg')
     b.find_element_by_id("SubmitForm").click()
